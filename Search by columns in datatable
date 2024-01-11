@@ -1,0 +1,219 @@
+//HTML
+<div style="overflow-x:auto;">
+    <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="col1">
+                    Категория
+                    <br/>
+                    <input type="text" id="inputName" onkeyup="SearchForName_Contragents_Category()" placeholder="Търси.." title="Име на категория">
+                </th>
+                <th class="col2">
+                    Активна
+                    <br />
+                    <input type="text" id="inputIs_Active" onkeyup="SearchForIs_Active_Contragents_Category()" placeholder="Търси.." title="Активна">
+                </th>
+                <th class="col3">
+                    Забележка
+                    <br />
+                    <input type="text" id="inputNote" onkeyup="SearchForNote_Contragents_Category()" placeholder="Търси.." title="Забележка">
+                </th>
+                <th class="col4">
+                    Създадена от
+                    <br />
+                    <input type="text" id="inputUser_Create" onkeyup="SearchForUser_Create_Contragents_Category()" placeholder="Търси.." title="Създадена от">
+                </th>
+                <th class="col5">
+                    Дата на създаване
+                    <br />
+                    <input type="text" id="inputDate_Create" onkeyup="SearchForDate_Create_Contragents_Category()" placeholder="Търси.." title="Дата на създаване">
+                </th>
+                <th class="col6">
+                    Последна редакция от
+                    <br />
+                    <input type="text" id="inputLast_User_Update" onkeyup="SearchForLastUserUpdate_Contragents_Category()" placeholder="Търси.." title="Последна редакция от">
+                </th>
+                <th class="col7">
+                    Дата на последна редакция
+                    <br />
+                    <input type="text" id="inputLastDateOfUpdate" onkeyup="SearchForLastDateOfUpdate_Contragents_Category()" placeholder="Търси.." title="Последна дата на редакция">
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col1">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="col2">
+                        @Html.DisplayFor(modelItem => item.Is_Active)
+                    </td>
+                    <td class="col3">
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td class="col4">
+                        @Html.DisplayFor(modelItem => item.User_Create)
+                    </td>
+                    <td class="col5">
+                        @Html.DisplayFor(modelItem => item.Date_Of_Create)
+                    </td>
+                    <td class="col6">
+                        @Html.DisplayFor(modelItem => item.Last_User_Update)
+                    </td>
+                    <td class="col7">
+                        @Html.DisplayFor(modelItem => item.Last_Date_Of_Update)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+//Using Javascript function
+//Search by name in contragents_category in view "Index"
+function SearchForName_Contragents_Category() {
+  var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputName");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+        txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+//Search by Is_Active in contragents_category in view "Index"
+function SearchForIs_Active_Contragents_Category() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputIs_Active");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+//Search by Note in contragents_category in view "Index"
+function SearchForNote_Contragents_Category() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputNote");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+//Search by User_Create in contragents_category in view "Index"
+function SearchForUser_Create_Contragents_Category() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputUser_Create");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+//Search by Date_Create in contragents_category in view "Index"
+function SearchForDate_Create_Contragents_Category() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputDate_Create");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+//Search by LastUserUpdate in contragents_category in view "Index"
+function SearchForLastUserUpdate_Contragents_Category() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputLast_User_Update");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[5];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+//Search by LastDateOfUpdate in contragents_category in view "Index"
+function SearchForLastDateOfUpdate_Contragents_Category() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("inputLastDateOfUpdate");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[6];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
