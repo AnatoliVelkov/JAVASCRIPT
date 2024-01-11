@@ -1,0 +1,155 @@
+//HTML
+<form>
+<div class="row">
+    <div class="col-lg-2 form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="col1" checked="checked">
+        <label class="form-check-label" for="flexCheckDefault">
+            Категория
+        </label>
+    </div>
+    <div class="col-lg-2 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="col2" checked="checked">
+        <label class="form-check-label" for="flexCheckChecked">
+            Активна
+        </label>
+    </div>
+        <div class="col-lg-2 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="col3" checked="checked">
+            <label class="form-check-label" for="flexCheckChecked">
+                Забележка
+            </label>
+        </div>
+        <div class="col-lg-2 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="col4" checked="checked">
+        <label class="form-check-label" for="flexCheckChecked">
+                Създадена от
+        </label>
+    </div>
+        <div class="col-lg-2 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="col5" checked="checked">
+            <label class="form-check-label" for="flexCheckChecked">
+                Дата на създаване
+            </label>
+        </div>
+        <div class="col-lg-2 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="col6" checked="checked">
+        <label class="form-check-label" for="flexCheckChecked">
+                Последна редакция от
+        </label>
+    </div>
+        <div class="col-lg-2 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="col7" checked="checked">
+            <label class="form-check-label" for="flexCheckChecked">
+                Дата на последна редакция
+            </label>
+        </div>
+</div>
+</form>
+<div style="overflow-x:auto;">
+    <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="col1">
+                    Категория
+                    <br/>
+                    <input type="text" id="inputName" onkeyup="SearchForName_Contragents_Category()" placeholder="Търси.." title="Име на категория">
+                </th>
+                <th class="col2">
+                    Активна
+                    <br />
+                    <input type="text" id="inputIs_Active" onkeyup="SearchForIs_Active_Contragents_Category()" placeholder="Търси.." title="Активна">
+                </th>
+                <th class="col3">
+                    Забележка
+                    <br />
+                    <input type="text" id="inputNote" onkeyup="SearchForNote_Contragents_Category()" placeholder="Търси.." title="Забележка">
+                </th>
+                <th class="col4">
+                    Създадена от
+                    <br />
+                    <input type="text" id="inputUser_Create" onkeyup="SearchForUser_Create_Contragents_Category()" placeholder="Търси.." title="Създадена от">
+                </th>
+                <th class="col5">
+                    Дата на създаване
+                    <br />
+                    <input type="text" id="inputDate_Create" onkeyup="SearchForDate_Create_Contragents_Category()" placeholder="Търси.." title="Дата на създаване">
+                </th>
+                <th class="col6">
+                    Последна редакция от
+                    <br />
+                    <input type="text" id="inputLast_User_Update" onkeyup="SearchForLastUserUpdate_Contragents_Category()" placeholder="Търси.." title="Последна редакция от">
+                </th>
+                <th class="col7">
+                    Дата на последна редакция
+                    <br />
+                    <input type="text" id="inputLastDateOfUpdate" onkeyup="SearchForLastDateOfUpdate_Contragents_Category()" placeholder="Търси.." title="Последна дата на редакция">
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col1">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="col2">
+                        @Html.DisplayFor(modelItem => item.Is_Active)
+                    </td>
+                    <td class="col3">
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td class="col4">
+                        @Html.DisplayFor(modelItem => item.User_Create)
+                    </td>
+                    <td class="col5">
+                        @Html.DisplayFor(modelItem => item.Date_Of_Create)
+                    </td>
+                    <td class="col6">
+                        @Html.DisplayFor(modelItem => item.Last_User_Update)
+                    </td>
+                    <td class="col7">
+                        @Html.DisplayFor(modelItem => item.Last_Date_Of_Update)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+//Javascript
+<script>
+    $(document).ready(function () {
+        if (typeof Cookies.get('col1') !== 'undefined') {
+            $(".col1").hide(); // or show() depending what you want
+        }
+        if (typeof Cookies.get('col2') !== 'undefined') {
+            $(".col2").hide(); 
+        }
+        if (typeof Cookies.get('col3') !== 'undefined') {
+            $(".col3").hide(); 
+        }
+         if (typeof Cookies.get('col4') !== 'undefined') {
+            $(".col4").hide(); 
+        }
+        if (typeof Cookies.get('col5') !== 'undefined') {
+            $(".col5").hide(); 
+        }
+         if (typeof Cookies.get('col6') !== 'undefined') {
+            $(".col6").hide(); 
+        }
+        if (typeof Cookies.get('col7') !== 'undefined') {
+            $(".col7").hide(); 
+        }
+        $('input[type="checkbox"]').click(function () {
+            $('th.' + $(this).attr('name')).toggle();
+            $('td.' + $(this).attr('name')).toggle();
+            Cookies.set($(this).attr('name'), true);
+        });
+    });
+</script>
